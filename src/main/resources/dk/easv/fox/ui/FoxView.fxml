@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.easv.fox.ui.FoxController"
+            prefWidth="480" prefHeight="700"
+            styleClass="root-pane">
+
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <top>
+        <VBox styleClass="header">
+            <Label text="ARDF Fox Configurator" styleClass="app-title"/>
+            <Label text="Radio orienteering · Fox terminal interface" styleClass="app-subtitle"/>
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="group-row">
+                <Label text="Group / Fox #" styleClass="field-label"/>
+                <Spinner fx:id="groupIdSpinner" prefWidth="80" styleClass="fox-spinner"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ── Parameter fields (built dynamically by controller) ─── -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <VBox fx:id="fieldsBox" styleClass="fields-box" spacing="4">
+                <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- ── Footer ─────────────────────────────────────────────── -->
+    <bottom>
+        <VBox styleClass="footer" spacing="8">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="sendButton"  text="Send config"  onAction="#onSendConfig"  styleClass="btn-primary"   prefWidth="130"/>
+                <Button fx:id="readButton"  text="Read config"  onAction="#onReadConfig"  styleClass="btn-secondary" prefWidth="110"/>
+                <Button fx:id="undoButton"  text="↩ Undo"       onAction="#onUndo"        styleClass="btn-secondary" prefWidth="80" disable="true"/>
+                <Button fx:id="redoButton"  text="↪ Redo"       onAction="#onRedo"        styleClass="btn-secondary" prefWidth="80" disable="true"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="clearButton" text="Clear all"    onAction="#onClearQueue"  styleClass="btn-danger"    prefWidth="90"/>
+                <Label  fx:id="queueLabel"  text="Queued: 0"    styleClass="queue-label"/>
+            </HBox>
+            <Label   fx:id="statusLabel" text="Ready"           styleClass="status-label info"/>
+            <TextArea fx:id="logArea" prefHeight="120" editable="false"
+                      wrapText="true" styleClass="log-area"/>
+        </VBox>
+    </bottom>
+</BorderPane>
